@@ -32,3 +32,18 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## 页面流程图
 ![博客页面流程图](https://github.com/D1N910/my-image/blob/master/myblog/01.jpg?raw=true)
+
+## 博客首页
+![博客首页图](https://github.com/D1N910/my-image/blob/master/myblog/02.png?raw=true)
+
+## 博客文章页面
+![博客文章页面](https://github.com/D1N910/my-image/blob/master/myblog/04.png?raw=true)
+
+## 博客文章详情页面
+![博客文章详情页面](https://github.com/D1N910/my-image/blob/master/myblog/05.png?raw=true)
+
+## 自制项目
+![自制项目](https://github.com/D1N910/my-image/blob/master/myblog/07.png?raw=true)
+
+## 自我介绍
+![自我介绍](https://github.com/D1N910/my-image/blob/master/myblog/06.png?raw=true)
