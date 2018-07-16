@@ -5,6 +5,7 @@ import Page from '@/components/Page/Page';
 import PageShow from '@/components/Page/PageShow';
 import Littleprogram from '@/components/Littleprogram/Littleprogram';
 import AboutMe from '@/components/AboutMe/AboutMe';
+import NotFound from '@/components/NotFound';
 
 Vue.use(Router);
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/AboutMe',
       name: 'AboutMe',
       component: AboutMe,
+    },
+    {
+      path: '*',
+      name: 'NotFound',
+      component: NotFound,
     },
   ],
 });
