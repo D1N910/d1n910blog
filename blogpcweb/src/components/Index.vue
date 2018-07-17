@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <div class="logo">
-      <img src="../assets/logo.png" alt="">
+      <img src="https://wx4.sinaimg.cn/mw690/006ES7aSgy1ftdctro1r2j30590590sn.jpg" alt="">
     </div>
     <h1>{{ msg }}</h1>
     <h2>根据下面的链接跟踪我</h2>

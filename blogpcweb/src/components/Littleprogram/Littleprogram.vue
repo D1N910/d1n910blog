@@ -4,7 +4,7 @@
         <div class="littleprogramSon-tag wechat">
             微信小程序端
         </div>
-        <img src="../../assets/lizdiner.png" alt="">
+        <img src="https://wx4.sinaimg.cn/mw690/006ES7aSgy1ftdcomjae6j305p09yaaf.jpg" alt="">
         <div class="littleprogramSon-title">
             莱兹食客
         </div>
@@ -13,7 +13,7 @@
             <div class="code_hidden" @click="code_show=!code_show;">
                 X
             </div>
-            <img src="../../assets/lizdiner_code.jpg" alt="">
+            <img src="https://wx3.sinaimg.cn/mw690/006ES7aSgy1ftdcomgh4gj30by0byaaf.jpg" alt="">
         </div>
     </div>
     <div class="littleprogramSon">
@@ -30,7 +30,7 @@
         <div class="littleprogramSon-tag">
             移动端
         </div>
-        <img src="../../assets/hp.png" alt="">
+        <img src="https://wx3.sinaimg.cn/mw690/006ES7aSgy1ftdcolz19tj308c0ek0sq.jpg" alt="">
         <div class="littleprogramSon-title">
             解救选择恐惧症v2.0
         </div>
@@ -41,7 +41,7 @@
         <div class="littleprogramSon-tag">
             移动端
         </div>
-        <img src="../../assets/sdm.png" alt="">
+        <img src="https://wx1.sinaimg.cn/mw690/006ES7aSgy1ftdcomuv6jj30860eft9k.jpg" alt="">
         <div class="littleprogramSon-title">
             加个圣诞帽吧 beta版本
         </div>
@@ -51,7 +51,7 @@
         <div class="littleprogramSon-tag">
             移动端
         </div>
-        <img src="../../assets/dazs.jpeg" alt="">
+        <img src="https://wx1.sinaimg.cn/mw690/006ES7aSgy1ftdcom2957j306h0bn74l.jpg" alt="">
         <div class="littleprogramSon-title">
             答案之书
         </div>

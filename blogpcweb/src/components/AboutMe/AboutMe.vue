@@ -29,11 +29,6 @@
     </div>
 </template>
 <script>
-import githubimg from '../../assets/github.png';
-import codingimg from '../../assets/coding.png';
-import weiboimg from '../../assets/weibo.png';
-import bilibiliimg from '../../assets/bilibili.png';
-import gmailimg from '../../assets/gmail.png';
 import ContactItem from './ContactItem';
 
 export default {
@@ -42,23 +37,23 @@ export default {
     return {
       contactMes: [{
         contactMehref: 'https://github.com/D1N910',
-        contactMeimg: githubimg,
+        contactMeimg: 'https://wx3.sinaimg.cn/mw1024/006ES7aSgy1ftdct9vo5uj303n03kjr9.jpg',
         contactMetext: 'D1n910',
       }, {
         contactMehref: 'https://coding.net/u/d1n910',
-        contactMeimg: codingimg,
+        contactMeimg: 'https://wx3.sinaimg.cn/mw1024/006ES7aSgy1ftdct9asbhj303k03ka9w.jpg',
         contactMetext: 'D1n910',
       }, {
         contactMehref: 'https://space.bilibili.com/12324653/#/',
-        contactMeimg: bilibiliimg,
+        contactMeimg: 'https://wx2.sinaimg.cn/mw1024/006ES7aSgy1ftdct9aak2j303x03kmwy.jpg',
         contactMetext: 'D1n910',
       }, {
         contactMehref: 'https://www.weibo.com/6100747726/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1',
-        contactMeimg: weiboimg,
+        contactMeimg: 'https://wx4.sinaimg.cn/mw1024/006ES7aSgy1ftdcu1tb5kj304j03k747.jpg',
         contactMetext: '枉送一命',
       }, {
         contactMehref: 'mailto: 260002330@qq.com',
-        contactMeimg: gmailimg,
+        contactMeimg: 'https://wx2.sinaimg.cn/mw1024/006ES7aSgy1ftdct9efk5j303k03kt8j.jpg',
         contactMetext: '260002330@qq.com',
       }],
     };
