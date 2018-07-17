@@ -7,15 +7,34 @@
           （{{getTitleLength}}/40)
         </div>
       </div>
-
+      <div class="articleContent" contenteditable="true">
+        <p v-for="p in articleContent" :key="p" v-html="p"></p>
+      </div>
+      <div class="tag">
+        <InputRadio  v-for="item in taglists" :key="item.id" :radio="item"/>
+      </div>
     </div>
 </template>
 <script>
+import InputRadio from './InputRadio';
+
 export default {
   name: 'PageManager',
+  components: { InputRadio },
   data() {
     return {
       PageTitle: '',
+      taglists: [{
+        id: 'daily',
+        name: '日常',
+      }, {
+        id: 'technology',
+        name: '技术',
+      }, {
+        id: 'tutorial',
+        name: '教程',
+      }],
+      articleContent: ['请在此输入正文'],
     };
   },
   computed: {
@@ -53,6 +72,9 @@ export default {
   padding: 0px;
   margin: 0px;
 }
+.articleContent{
+  outline: 0px;
+}
 .pagemanager{
   text-align: left;
   padding: 30px 0;
@@ -72,6 +94,12 @@ export default {
 }
 .showtitleNumber{
   text-align: right;
+}
+.articleContent{
+  height: 600px;
+}
+.origin-placeholder{
+  color: #ccd0d4;
 }
 </style>
 
