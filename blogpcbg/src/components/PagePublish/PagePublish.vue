@@ -7,32 +7,61 @@
           （{{getTitleLength}}/40)
         </div>
       </div>
-      <div class="edit">
+            <div class="edit">
         <div class="fontContainer">
           <i class="iconfont icon-font" @mousemove="
         showfontcolor=true;" @mouseover="showfontcolor=false;"></i>
           <div class="font-color-container">
-          <ul class="colorlists">
-            <li v-for="color in fontcolorlist" :key="
-            color.backgrounColor" :style="{borderColor:color.backgrounColor,
-            background:color.borderColor}"> </li>
-          </ul>
-        </div>
+            <div class="title">
+              默认样式
+            </div>
+            <ul class="colorlists">
+              <li :style="{borderColor:'black',
+                background:'black'}"> </li>
+            </ul>
+            <div class="title">
+              最近使用
+            </div>
+            <div class="nousetextcolor" v-if='usecolorlist.length===0?true:false'>
+              你还没使用过文字颜色
+            </div>
+            <ul class="colorlists" v-if='usecolorlist.length>0?true:false'>
+              <li v-for="color in usecolorlist"
+              :key="color.backgrounColor"
+              :style="{borderColor:color.backgrounColor,background:color.borderColor}"> </li>
+            </ul>
+            <div class="title">
+              文字颜色
+            </div>
+            <ul class="colorlists">
+              <li v-for="color in fontcolorlist"
+              :key="color.backgrounColor" :style="{borderColor:color.backgrounColor,
+              background:color.borderColor}"> </li>
+            </ul>
+          </div>
         </div>
         <i class="iconfont icon-fuwenben_beijingyanse"></i>
-        <i class="iconfont icon-fuwenben_jiacu"></i>
+        <a href="javascript:void(0);" @click.stop="
+        changeStyle"><i class="iconfont icon-fuwenben_jiacu"></i></a>
         <i class="iconfont icon-fuwenben_xieti"></i>
-        <i class="iconfont icon-fuwenben-tupian"></i>
+        <i class="iconfont icon-fuwenben-tupian" @click="showImgContainer"></i>
         <div class="left">
             <i class="iconfont icon-undo"></i>
             <i class="iconfont icon-redo"></i>
         </div>
       </div>
-      <div class="articleContent" contenteditable="true">
-        <p class="origin-placeholder">请在此输入正文</p>
+      <div class="articleContent" contenteditable="true" id="articleContent">
       </div>
       <div class="tag">
         <InputRadio  v-for="item in taglists" :key="item.id" :radio="item"/>
+      </div>
+      <div class="showImgContainer" v-if="
+      showImgCharuC0ontainer" @click="showImgCharuC0ontainer=false;">
+        <div class="showImg" @click.stop>
+          <span>在此插入图片的链接:</span>
+          <input type="text" v-model="imgurl" placeholder="请输入你的地址(你可以随便玩，但是一般要图片才能输出来：）)">
+          <button class="charu" @click="addImage">插入</button>
+        </div>
       </div>
     </div>
 </template>
@@ -45,6 +74,8 @@ export default {
   data() {
     return {
       PageTitle: '',
+      imgurl: '',
+      showImgCharuC0ontainer: false,
       taglists: [{
         id: 'daily',
         name: '日常',
@@ -55,6 +86,7 @@ export default {
         id: 'tutorial',
         name: '教程',
       }],
+      usecolorlist: [],
       fontcolorlist: [{
         backgrounColor: 'rgb(107, 195, 245)',
         borderColor: 'rgb(137, 212, 255)',
@@ -138,6 +170,7 @@ export default {
         borderColor: 'rgb(95, 95, 95)',
       }],
       showfontcolor: false,
+      clickB: '',
     };
   },
   computed: {
@@ -164,8 +197,30 @@ export default {
     },
   },
   methods: {
+    checkHave() {
+      const articleContent = document.getElementById('articleContent');
+      if (articleContent.innerHTML === '') {
+        articleContent.innerHTML = '<div style="color:#ededed;">请在此输入正文</div>';
+      }
+    },
+    changeStyle() {
+      this.clickB = 'italic';
+      document.execCommand('bold', false, null);
+    },
+    checkContent() {
+      const articleContent = document.getElementById('articleContent');
+      if (articleContent.innerText === '请在此输入正文') {
+        articleContent.innerHTML = '';
+      }
+    },
     SetMaxPageTitle(i) {
       this.PageTitle = this.PageTitle.substr(0, i - 1);
+    },
+    showImgContainer() {
+      this.showImgCharuC0ontainer = true;
+    },
+    addImage() {
+      document.getElementById('articleContent').innerHTML += '<img src="https://wx3.sinaimg.cn/mw690/006ES7aSgy1ftgawhaq27j30qo0qodls.jpg">';
     },
   },
 };
@@ -176,8 +231,54 @@ export default {
   margin: 0px;
   color: #000;
 }
+body{
+  position: relative;
+}
+a{
+  text-decoration: none;
+}
+.showImgContainer{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.showImgContainer .showImg{
+  background-color: #ededed;
+  padding: 10px;
+  width: 400px;
+  border-radius: 3px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+.showImgContainer .showImg input{
+  border: 0px;
+  outline: 0px;
+  width: 100%;
+  height: 24px;
+}
+.showImgContainer .showImg .charu{
+  padding: 4px 8px;
+  margin: 8px;
+  background: #771ae4;
+  color: #fff;
+  float: right;
+  cursor: pointer;
+}
 .articleContent{
   outline: 0px;
+}
+.articleContent p{
+  height: 24px;
+}
+.larticleContent div{
+  height: 24px;
+}
+.articleContent img{
+  width: 300px;
 }
 .pagemanager{
   text-align: left;
@@ -200,15 +301,16 @@ export default {
   text-align: right;
 }
 .articleContent{
-  height: 600px;
+  min-height: 600px;
+  margin: 30px 0 30px 0;
 }
 .edit{
   width: 100%;
-  height: 32px;
+  height: 42px;
   background: #ededed;
   color: #000;
   text-align: center;
-  line-height: 32px;
+  line-height: 42px;
   display: flex;
   justify-content: center;
 }
@@ -228,7 +330,7 @@ export default {
   display: none;
 }
 .fontContainer:hover .font-color-container{
-  display: block;  
+  display: block;
 }
 .font-color-container:hover{
   display: block;
@@ -238,6 +340,13 @@ export default {
   width: 172px;
   display: flex;
   flex-wrap: wrap;
+  margin: 0 0 16px 0;
+  border-bottom: 2px solid #fff;
+}
+.edit .title{
+  font-size: 14px;
+  text-align: left;
+  text-indent: 8px;
 }
 .colorlists li{
   width: 16px;
@@ -258,6 +367,13 @@ export default {
 }
 .origin-placeholder{
   color: #ccd0d4;
+}
+.nousetextcolor{
+  font-size: 14px;
+  text-align: center;
+  color: #771ae4;
+  border-bottom: 2px solid #fff;
+  cursor: not-allowed;
 }
 </style>
 
