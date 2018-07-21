@@ -49,6 +49,9 @@
             <i class="iconfont icon-undo"></i>
             <i class="iconfont icon-redo"></i>
         </div>
+        <div class="localStorage" @click="savePageContent">
+          {{savePageContentText}}
+        </div>
       </div>
       <div class="articleContent" contenteditable="true" id="articleContent">
       </div>
@@ -73,6 +76,7 @@ export default {
   components: { InputRadio },
   data() {
     return {
+      savePageContentText: '缓存到本地',
       PageTitle: '',
       imgurl: '',
       showImgCharuC0ontainer: false,
@@ -174,6 +178,14 @@ export default {
     };
   },
   computed: {
+    getUrl() {
+      const imgurlArray = [];
+      imgurlArray.push('<img src="');
+      imgurlArray.push(this.imgurl);
+      imgurlArray.push('">');
+      const imgUrl = imgurlArray.join('');
+      return imgUrl;
+    },
     getTitleLength() {
       let byteLen = 0;
       const len = this.PageTitle.length;
@@ -196,7 +208,21 @@ export default {
       return 0;
     },
   },
+  mounted() {
+    document.getElementById('articleContent').innerHTML = window.localStorage.getItem('pageContent');
+    this.PageTitle = window.localStorage.getItem('pageTitle');
+    setInterval(() => { this.savePageContent(); }, 8000);
+  },
   methods: {
+    savePageContent() {
+      this.savePageContentText = '缓存中';
+      const articleContent = document.getElementById('articleContent').innerHTML;
+      window.localStorage.setItem('pageContent', articleContent);
+      window.localStorage.setItem('pageTitle', this.PageTitle);
+      setTimeout(() => {
+        this.savePageContentText = '缓存到本地';
+      }, 500);
+    },
     checkHave() {
       const articleContent = document.getElementById('articleContent');
       if (articleContent.innerHTML === '') {
@@ -220,7 +246,8 @@ export default {
       this.showImgCharuC0ontainer = true;
     },
     addImage() {
-      document.getElementById('articleContent').innerHTML += '<img src="https://wx3.sinaimg.cn/mw690/006ES7aSgy1ftgawhaq27j30qo0qodls.jpg">';
+      this.showImgCharuC0ontainer = false;
+      document.getElementById('articleContent').innerHTML += this.getUrl;
     },
   },
 };
@@ -309,10 +336,11 @@ a{
   height: 42px;
   background: #ededed;
   color: #000;
-  text-align: center;
   line-height: 42px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  position: relative;
 }
 .edit .left{
   float: right;
@@ -374,6 +402,18 @@ a{
   color: #771ae4;
   border-bottom: 2px solid #fff;
   cursor: not-allowed;
+}
+.localStorage{
+  height: 18px;
+  font-size: 16px;
+  color: #771ae4;
+  border: 2px solid #771ae4;
+  border-radius: 2px;
+  line-height: 18px;
+  cursor: pointer;
+  margin: 0 0 0 30px;
+  position: absolute;
+  right: 16px;
 }
 </style>
 
