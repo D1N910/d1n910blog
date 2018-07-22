@@ -50,10 +50,14 @@
           {{savePageContentText}}
         </div>
       </div>
-      <div class="articleContent" contenteditable="true" id="articleContent">
+      <div class="articleContent" contenteditable="true" id="articleContent" @keyup.9="indent">
       </div>
       <div class="tag">
         <InputRadio  v-for="item in taglists" :key="item.id" :radio="item"/>
+      </div>
+      <div class="time">
+        <input type="date" v-model="pageDate">
+        <input type="time" v-model="pageTime">
       </div>
       <div class="showImgContainer" v-if="
       showImgCharuC0ontainer" @click="showImgCharuC0ontainer=false;">
@@ -63,6 +67,7 @@
           <button class="charu" @click="addImage">插入</button>
         </div>
       </div>
+      <button class="upAndSubmit">发表</button>
     </div>
 </template>
 <script>
@@ -73,6 +78,8 @@ export default {
   components: { InputRadio },
   data() {
     return {
+      pageDate: '',
+      pageTime: '',
       savePageContentText: '缓存到本地',
       editList: [{
         methods: 'undo',
@@ -197,9 +204,9 @@ export default {
     },
     getUrl() {
       const imgurlArray = [];
-      imgurlArray.push('<img src="');
+      imgurlArray.push('<figure class="img-box" contenteditable="false"><img style="max-width:600px;width:100%;" src="');
       imgurlArray.push(this.imgurl);
-      imgurlArray.push('">');
+      imgurlArray.push('"><figure>');
       const imgUrl = imgurlArray.join('');
       return imgUrl;
     },
@@ -313,15 +320,9 @@ a{
 }
 .articleContent{
   outline: 0px;
-}
-.articleContent p{
-  height: 24px;
-}
-.larticleContent div{
-  height: 24px;
-}
-.articleContent img{
-  width: 300px;
+  min-height: 600px;
+  margin: 30px 0 30px 0;
+  border-bottom: 1px solid #ececec;
 }
 .pagemanager{
   text-align: left;
@@ -342,10 +343,6 @@ a{
 }
 .showtitleNumber{
   text-align: right;
-}
-.articleContent{
-  min-height: 600px;
-  margin: 30px 0 30px 0;
 }
 .edit{
   width: 100%;
@@ -430,6 +427,31 @@ a{
   margin: 0 0 0 30px;
   position: absolute;
   right: 16px;
+}
+.upAndSubmit{
+  height: 24px;
+  font-size: 16px;
+  color: #771ae4;
+  border: 2px solid #771ae4;
+  border-radius: 4px;
+  line-height: 12px;
+  cursor: pointer;
+  margin: 30px 0;
+  padding: 4px 16px;
+  outline: 0px;
+}
+.tag,.time{
+  padding: 0 0 30px 0;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ececec;
+}
+.img-box, figure {
+    text-align: center !important;
+    margin: 0 auto 20px;
+    display: block;
+    width: 100%;
+    outline: none;
+    font-size: 0;
 }
 </style>
 
