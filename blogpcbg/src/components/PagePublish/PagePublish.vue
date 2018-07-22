@@ -7,10 +7,11 @@
           （{{getTitleLength}}/40)
         </div>
       </div>
-            <div class="edit">
-        <div class="fontContainer">
-          <i class="iconfont icon-font" @mousemove="
-        showfontcolor=true;" @mouseover="showfontcolor=false;"></i>
+      <div class="edit">
+        <!-- <div class="fontContainer">
+          <i class="iconfont icon-font"
+          @mousemove="showfontcolor=true;"
+          @mouseover="showfontcolor=false;"></i>
           <div class="font-color-container">
             <div class="title">
               默认样式
@@ -40,15 +41,11 @@
             </ul>
           </div>
         </div>
-        <i class="iconfont icon-fuwenben_beijingyanse"></i>
-        <a href="javascript:void(0);" @click.stop="
-        changeStyle"><i class="iconfont icon-fuwenben_jiacu"></i></a>
-        <i class="iconfont icon-fuwenben_xieti"></i>
+        <i class="iconfont icon-fuwenben_beijingyanse"></i> -->
+        <a href="javascript:void(0);"
+        v-for="item in filtersEditList" :key="item.methods" @click="changeStyle(item.methods)">
+        <i class="iconfont" :class="item.iconName"></i></a>
         <i class="iconfont icon-fuwenben-tupian" @click="showImgContainer"></i>
-        <div class="left">
-            <i class="iconfont icon-undo"></i>
-            <i class="iconfont icon-redo"></i>
-        </div>
         <div class="localStorage" @click="savePageContent">
           {{savePageContentText}}
         </div>
@@ -77,6 +74,19 @@ export default {
   data() {
     return {
       savePageContentText: '缓存到本地',
+      editList: [{
+        methods: 'undo',
+        iconName: 'icon-undo',
+      }, {
+        methods: 'redo',
+        iconName: 'icon-redo',
+      }, {
+        methods: 'bold',
+        iconName: 'icon-fuwenben_jiacu',
+      }, {
+        methods: 'italic',
+        iconName: 'icon-fuwenben_xieti',
+      }],
       PageTitle: '',
       imgurl: '',
       showImgCharuC0ontainer: false,
@@ -178,6 +188,13 @@ export default {
     };
   },
   computed: {
+    filtersEditList() {
+      const editList = this.editList;
+      return editList.filter((element, index, self) => {
+        const selflength = self.length;
+        return index <= selflength - 1;
+      });
+    },
     getUrl() {
       const imgurlArray = [];
       imgurlArray.push('<img src="');
@@ -229,9 +246,8 @@ export default {
         articleContent.innerHTML = '<div style="color:#ededed;">请在此输入正文</div>';
       }
     },
-    changeStyle() {
-      this.clickB = 'italic';
-      document.execCommand('bold', false, null);
+    changeStyle(methods) {
+      document.execCommand(methods, false, null);
     },
     checkContent() {
       const articleContent = document.getElementById('articleContent');
