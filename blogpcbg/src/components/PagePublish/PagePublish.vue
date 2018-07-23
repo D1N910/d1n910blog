@@ -270,7 +270,7 @@ export default {
     submit() {
       this.page.date = this.pageDate;
       this.page.datetime = this.pageTime;
-      this.page.anthor = this.anthor;
+      this.page.anthor = this.author;
       this.page.pageContent = document.getElementById('articleContent').innerHTML;
       this.page.pageType = this.pageType;
       const postPage = this.page;

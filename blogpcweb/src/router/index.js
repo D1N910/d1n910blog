@@ -20,11 +20,13 @@ export default new Router({
       path: '/page',
       name: 'Page',
       component: Page,
-    },
-    {
-      path: '/page/pageId',
-      name: 'PageShow',
-      component: PageShow,
+      children: [
+        {
+          path: 'pageId',
+          name: 'PageShow',
+          component: PageShow,
+        },
+      ],
     },
     {
       path: '/littlegongju',

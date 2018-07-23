@@ -3,6 +3,7 @@
     <div class="time">{{page.time}}</div>
     <div class="pageItem_text">
         <h1><a :href="'/#/page/pageId?pageId='+page.pageUrl">{{page.title}}</a></h1>
+        <h2>{{page.author||'匿名'}}</h2>
         <div v-html="page.content">
         </div>
     </div>
@@ -35,6 +36,9 @@ export default {
     width: 100%;
     font-size: 24px;
     color: #771ae4;
+}
+.pageItem h2 {
+    font-size: 14px;
 }
 .pageItem p {
     margin: 2px 15px 0 15px;

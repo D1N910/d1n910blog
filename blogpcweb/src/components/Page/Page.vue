@@ -15,7 +15,7 @@ export default {
         time: '2018-07-11',
         title: '这是我的第一篇文章',
         content: '学习Vue学习Vue学习Vue学习Vue学习Vue学习Vue',
-        pageUrl: 'xuexixuexi1',
+        pageUrl: '1',
       },
       ],
     };

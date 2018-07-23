@@ -14,8 +14,9 @@ export default {
       pages: {
         time: '2018-07-11',
         title: '这是我的第一篇文章',
+        author: 'D1n910',
         content: '<p>学习V学习VueVue学习Vue学习Vue学习Vue学习VueVue学习Vue学习Vue学习Vue学习VueVue学习Vue学习Vue学习Vue学习VueVue学习Vue学习Vue学习Vue学习VueVue学习Vue学习Vue学习VueueVue学习Vue学习Vue学习Vue</p><img src="https://wx3.sinaimg.cn/mw690/68fe876aly1fsif8rrjdkj21kw23vx6r.jpg" alt="">',
-        pageUrl: 'xuexixuexi1',
+        pageUrl: '1',
       },
     };
   },
