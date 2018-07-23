@@ -53,11 +53,14 @@
       <div class="articleContent" contenteditable="true" id="articleContent" @keyup.9="indent">
       </div>
       <div class="tag">
-        <InputRadio  v-for="item in taglists" :key="item.id" :radio="item"/>
+        <InputRadio  v-for="item in taglists" :key="item.id" :radio="item"
+        @showChecked='updatePageType'/>
       </div>
       <div class="time">
+        <span>显示发表时间：</span>
         <input type="date" v-model="pageDate">
         <input type="time" v-model="pageTime">
+        <span>作者：</span><input type="text" v-model="author">
       </div>
       <div class="showImgContainer" v-if="
       showImgCharuC0ontainer" @click="showImgCharuC0ontainer=false;">
@@ -67,7 +70,7 @@
           <button class="charu" @click="addImage">插入</button>
         </div>
       </div>
-      <button class="upAndSubmit">发表</button>
+      <button class="upAndSubmit" @click='submit'>发表</button>
     </div>
 </template>
 <script>
@@ -80,6 +83,8 @@ export default {
     return {
       pageDate: '',
       pageTime: '',
+      pageType: '日常',
+      author: 'D1n910',
       savePageContentText: '缓存到本地',
       editList: [{
         methods: 'undo',
@@ -192,6 +197,7 @@ export default {
       }],
       showfontcolor: false,
       clickB: '',
+      page: {},
     };
   },
   computed: {
@@ -233,11 +239,51 @@ export default {
     },
   },
   mounted() {
+    const date = new Date();
+    const SpageDate = [];
+    SpageDate.push(date.getFullYear());
+    SpageDate.push('-');
+    SpageDate.push((date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1));
+    SpageDate.push('-');
+    SpageDate.push(date.getDate());
+    const SpageTime = [];
+    SpageTime.push((date.getHours() + 1 < 10 ? `0${date.getHours()}` : date.getHours()));
+    SpageTime.push(':');
+    SpageTime.push((date.getMinutes() + 1 < 10 ? `0${date.getMinutes()}` : date.getMinutes()));
+    this.pageDate = SpageDate.join('');
+    this.pageTime = SpageTime.join('');
+    if (!window.localStorage.getItem('pageContent')) {
+      return false;
+    }
     document.getElementById('articleContent').innerHTML = window.localStorage.getItem('pageContent');
+    if (!window.localStorage.getItem('pageTitle')) {
+      return false;
+    }
     this.PageTitle = window.localStorage.getItem('pageTitle');
     setInterval(() => { this.savePageContent(); }, 8000);
+    return true;
   },
   methods: {
+    updatePageType(data) {
+      this.pageType = data.checkedValue;
+    },
+    submit() {
+      this.page.date = this.pageDate;
+      this.page.datetime = this.pageTime;
+      this.page.anthor = this.anthor;
+      this.page.pageContent = document.getElementById('articleContent').innerHTML;
+      this.page.pageType = this.pageType;
+      const postPage = this.page;
+      this.$http.post(
+        '/api/blogCreate',
+        postPage,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+    },
     savePageContent() {
       this.savePageContentText = '缓存中';
       const articleContent = document.getElementById('articleContent').innerHTML;

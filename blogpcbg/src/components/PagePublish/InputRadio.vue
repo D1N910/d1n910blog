@@ -1,6 +1,7 @@
 <template>
     <div class="inputradio">
-        <input id="radio.id" type="radio" name="tag" :value="radio.name" v-model="checkedValue">
+        <input id="radio.id" type="radio"
+        name="tag" :value="radio.name" v-model="checkedValue" @click="checkTag">
         <label for="radio.id">{{radio.name}}</label>
     </div>
 </template>
@@ -10,8 +11,16 @@ export default {
   props: ['radio'],
   data() {
     return {
-      checkedValue: '',
+      checkedValue: '日常',
     };
+  },
+  methods: {
+    checkTag() {
+      const data = {
+        checkedValue: this.checkedValue,
+      };
+      this.$emit('showChecked', data);
+    },
   },
 };
 </script>
