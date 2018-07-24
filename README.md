@@ -1,6 +1,6 @@
 # D1N910自己的博客项目
 
-> A Vue.js project
+> 使用Vue开发的个人博客
 
 ## Build Setup
 
