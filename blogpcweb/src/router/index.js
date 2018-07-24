@@ -12,7 +12,7 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/index',
       name: 'Index',
       component: Index,
     },
@@ -20,13 +20,11 @@ export default new Router({
       path: '/page',
       name: 'Page',
       component: Page,
-      children: [
-        {
-          path: 'pageId',
-          name: 'PageShow',
-          component: PageShow,
-        },
-      ],
+    },
+    {
+      path: '/pageId',
+      name: 'PageShow',
+      component: PageShow,
     },
     {
       path: '/littlegongju',

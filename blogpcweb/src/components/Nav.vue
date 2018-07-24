@@ -1,7 +1,7 @@
 <template>
     <nav>
         <div class="logo">
-          <router-link :to="'/'"><img src="http://wx2.sinaimg.cn/large/006ES7aSgy1ftdcos7qo5g30jj05ykb5.gif"></router-link>
+          <router-link :to="'index'"><img src="http://wx2.sinaimg.cn/large/006ES7aSgy1ftdcos7qo5g30jj05ykb5.gif"></router-link>
         </div>
          <nav>
             <router-link  v-for="nav in navs" :key="
@@ -17,7 +17,7 @@ export default {
       navs: [
         {
           id: 0,
-          navUrl: '/',
+          navUrl: 'index',
           navName: '主页',
         },
         {

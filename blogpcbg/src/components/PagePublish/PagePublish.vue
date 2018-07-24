@@ -273,6 +273,7 @@ export default {
       this.page.anthor = this.author;
       this.page.pageContent = document.getElementById('articleContent').innerHTML;
       this.page.pageType = this.pageType;
+      this.page.pageTitle = this.PageTitle;
       const postPage = this.page;
       this.$http.post(
         '/api/blogCreate',

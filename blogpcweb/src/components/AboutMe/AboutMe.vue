@@ -6,7 +6,7 @@
         <img src="../../assets/logo.png" alt="">
         <p class="title">D1N910 (pengjiangao)</p>
         <p>
-            Github上最肥的🐔客、程序🦍、PM、水瓶座纠结强迫症、在校大三大学生，现居广东韶关，家住广东深圳
+            自认是Github上最肥的🐔客、程序🦍、PM、水瓶座纠结强迫症、在校大三大学生，现居广东深圳
         </p>
         <p>
             主修信息于计算科学，就读于数学于统计学院

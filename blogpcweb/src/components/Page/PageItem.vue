@@ -1,10 +1,11 @@
 <template>
   <div class="pageItem">
-    <div class="time">{{page.time}}</div>
+    <div class="time">{{page.date}}</div>
     <div class="pageItem_text">
-        <h1><a :href="'/#/page/pageId?pageId='+page.pageUrl">{{page.title}}</a></h1>
-        <h2>{{page.author||'匿名'}}</h2>
-        <div v-html="page.content">
+        <h1><router-link :to="'/pageId?pageId='+page.id">{{page.pageTitle}}</router-link >
+        <button>{{page.pageType}}</button></h1>
+        <h2>{{page.anthor||'匿名'}}</h2>
+        <div class="pageContent" v-html="page.pageContent || ''">
         </div>
     </div>
   </div>
@@ -51,5 +52,8 @@ export default {
 }
 a{
     color: #771ae4;
+}
+.pageContent{
+    text-align: left;
 }
 </style>

@@ -12,13 +12,28 @@ export default {
   data() {
     return {
       pages: {
-        time: '2018-07-11',
-        title: '这是我的第一篇文章',
-        author: 'D1n910',
-        content: '<p>学习V学习VueVue学习Vue学习Vue学习Vue学习VueVue学习Vue学习Vue学习Vue学习VueVue学习Vue学习Vue学习Vue学习VueVue学习Vue学习Vue学习Vue学习VueVue学习Vue学习Vue学习VueueVue学习Vue学习Vue学习Vue</p><img src="https://wx3.sinaimg.cn/mw690/68fe876aly1fsif8rrjdkj21kw23vx6r.jpg" alt="">',
-        pageUrl: '1',
       },
     };
+  },
+  beforeCreate() {
+    const search = window.location.hash.split('?')[1];
+    const getUrl = [];
+    getUrl.push('https://www.d1n910.cn/api/getMypage?');
+    getUrl.push(search);
+    const url = getUrl.join('');
+    this.$http.get(
+      url,
+    ).then((response) => {
+      const pages = JSON.parse(response.bodyText).getMypage;
+      for (let i = 0; i <= pages.length - 1; i += 1) {
+        const data = [];
+        data.push(pages[i].date.substr(0, 10));
+        data.push(' ');
+        data.push(pages[i].datetime);
+        pages[i].date = data.join('');
+      }
+      this.pages = pages[0];
+    });
   },
 };
 </script>
